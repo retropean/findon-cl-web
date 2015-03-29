@@ -1,0 +1,19 @@
+.GaramondPro, body, h1, h2, h3 {
+	font-weight: normal;
+	font-style: normal;
+	font-size: small;
+	font-family: "Garamond", "Times New Roman", serif;
+	margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%) }
+}
+div.headstyle {
+    font-size: 20; }
+
+#button1 {
+  font-size: small;
+  font-family: "garamond";
+}
