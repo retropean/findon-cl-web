@@ -1,0 +1,28 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "category": "vehicles",
+      "date": "2019-05-30T17:30:31.098Z",
+      "make": "bmw",
+	  "model": "325i",
+	  "price": 5000
+    },
+    {
+      "id": 2,
+      "category": "vehicles",
+      "date": "2019-05-30T17:30:31.098Z",
+      "make": "VW",
+	  "model": "Beetle",
+	  "price": 30000
+    },
+    {
+      "id": 3,
+	  "category": "computers",
+      "date": "2019-05-30T17:30:31.098Z",
+      "make": "thinkpad",
+	  "model": "t430",
+	  "price": 5
+    }
+  ]
+}
