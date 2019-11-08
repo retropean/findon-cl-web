@@ -10,16 +10,6 @@ const Button = ({ onClick, text }) => (
   </button>
 )
 
-const SearchFunction = () => {
-	return(
-  	  <form>
-        <input 
-		/>
-        <Button text='submit' />
-      </form>   
-	)
-}
-
 const Data = ({ data }) => {
   return (
     <li className='data'>
@@ -30,12 +20,12 @@ const Data = ({ data }) => {
 
 function App() {
 	const [data, setData] = useState([])
-	const [showCat, setShowCat] = useState('vehicles')
-  
-
-	const handleCatChange = (category) => {
-		console.log('hello')
-		setShowCat(category)
+	const [showCat, setShowCat] = useState('')
+	const [search, setSearch] = useState('') 
+	
+	const handleSearchChange = (event) => {
+		console.log(event.target.value)
+		setSearch(event.target.value)
 	}
 	
     useEffect(() => {
@@ -46,7 +36,17 @@ function App() {
 		})
     }, [])	
 	
-	const rowsToShow = data.filter(data => data.category === showCat) // Filter the data based on category
+	const rowsToShow = data.filter(data => showCat === '' ?
+		data.make.includes(search) ||
+		data.model.includes(search) ||
+		data.category.includes(search)
+		:
+		(data.make.includes(search) ||
+		data.model.includes(search) ||
+		data.category.includes(search)) &&
+		data.category === showCat
+	)
+	
 	// Build the rows based on category
 	const rows = () => rowsToShow.map(data =>
 		<Data
@@ -58,10 +58,13 @@ function App() {
 	return (
 		<div className="App">
 			<Header />
-			<SearchFunction />
+			<form>
+				<input value={search} onChange={handleSearchChange}	/>
+			</form>   
 			<p>
 			or browse by category
 			</p>
+			<Button text="all" onClick={() => setShowCat("")}/>  
 			<Button text="art" onClick={() => setShowCat("art")}/>  
 			<Button text="bikes" onClick={() => setShowCat("bikes")}/>  
 			<Button text="computers" onClick={() => setShowCat("computers")}/>
