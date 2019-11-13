@@ -11,11 +11,20 @@ const Button = ({ onClick, text }) => (
 )
 
 const Data = ({ data }) => {
+	return (
+		<div className='data' class='data'>
+			{data.make} {data.model}
+		</div>
+	)
+ //style={{width: '200px', height: '200px', float: 'left',  border: '1px solid black', margin: '10px'}}	
+	
+/*
   return (
     <li className='data'>
       {data.make} 
     </li>
   )
+*/
 }
 
 function App() {
@@ -59,18 +68,22 @@ function App() {
 		<div className="App">
 			<Header />
 			<form>
-				<input value={search} onChange={handleSearchChange}	/>
+				<input class='mainsearch' value={search} onChange={handleSearchChange}	/>
 			</form>   
 			<p>
 			or browse by category
 			</p>
-			<Button text="all" onClick={() => setShowCat("")}/>  
-			<Button text="art" onClick={() => setShowCat("art")}/>  
-			<Button text="bikes" onClick={() => setShowCat("bikes")}/>  
-			<Button text="computers" onClick={() => setShowCat("computers")}/>
-			<Button text="electronics" onClick={() => setShowCat("electronics")}/>
-			<Button text="vehicles" onClick={() => setShowCat("vehicles")}/>
+			<div>
+			<Button class="button_style" text="all" onClick={() => setShowCat("")}/>  
+			<Button class="button_style" text="art" onClick={() => setShowCat("art")}/>  
+			<Button class="button_style" text="bikes" onClick={() => setShowCat("bikes")}/>  
+			<Button class="button_style" text="computers" onClick={() => setShowCat("computers")}/>
+			<Button class="button_style" text="electronics" onClick={() => setShowCat("electronics")}/>
+			<Button class="button_style" text="vehicles" onClick={() => setShowCat("vehicles")}/>
+			</div>
+			<div class='data-shell'>
 			{rows()}
+			</div>
 		</div>
 	);
 }
