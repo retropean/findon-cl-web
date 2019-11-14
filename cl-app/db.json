@@ -6,7 +6,8 @@
       "date": "2019-05-30T17:30:31.098Z",
       "make": "bmw",
 	  "model": "325i",
-	  "price": 5000
+	  "price": 5000,
+	  "img": "N357aoXuLbndncUw6ExCX0hC2LCcYvbchz_KCjYPt-0.jpg"
     },
     {
       "id": 2,
@@ -14,7 +15,8 @@
       "date": "2019-05-30T17:30:31.098Z",
       "make": "VW",
 	  "model": "Beetle",
-	  "price": 30000
+	  "price": 30000,
+	  "img": "beetle.jpg"
     },
     {
       "id": 3,
@@ -22,7 +24,8 @@
       "date": "2019-05-30T17:30:31.098Z",
       "make": "thinkpad",
 	  "model": "t430",
-	  "price": 5
+	  "price": 5,
+	  "img": "81o4I0ckQZL._SL1500_.jpg"
     }
   ]
 }

@@ -13,18 +13,10 @@ const Button = ({ onClick, text }) => (
 const Data = ({ data }) => {
 	return (
 		<div className='data' class='data'>
+			<img src={require("./img/" + data.img)} alt={data.make + " " + data.model} width='100%' height='75%'/>
 			{data.make} {data.model}
 		</div>
 	)
- //style={{width: '200px', height: '200px', float: 'left',  border: '1px solid black', margin: '10px'}}	
-	
-/*
-  return (
-    <li className='data'>
-      {data.make} 
-    </li>
-  )
-*/
 }
 
 function App() {
