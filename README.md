@@ -2,4 +2,5 @@
 Little website for findon.cl<br>
 https://github.com/team-pomelo/findon-cl-worker<br>
 https://github.com/team-pomelo/findon-cl<br>
-I should defintiely get cracking on this.
+
+use both <code>npm run start</code> and <code>npm run server</code> in order to start.
