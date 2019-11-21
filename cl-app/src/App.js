@@ -3,18 +3,31 @@ import './App.css';
 import Header from './components/Header'
 import datasService from './services/datas'
 
-
 const Button = ({ onClick, text }) => (
   <button onClick={onClick}>
     {text}
   </button>
 )
 
-const Data = ({ data }) => {
+const Data = ({ onClick, data }) => {
 	return (
-		<div className='data' class='data'>
-			<img src={require("./img/" + data.img)} alt={data.make + " " + data.model} width='100%' height='75%'/>
+		<div className='data'>
+			<img src={require("./img/" + data.img)} alt={data.make + " " + data.model} onClick={onClick} width='100%' height='75%'/>
 			{data.make} {data.model}
+		</div>
+	)
+}
+
+const Item = ({ data }) => {
+	return (
+		<div className='highlighted-item'>
+			<img className='item_img' src={require("./img/" + data.img)} alt={data.make + " " + data.model} width='100%' height='75%'/>
+			<div className='item_text'>
+				<b>make: </b>{data.make} <br/> 
+				<b>model: </b>{data.model} <br/> 
+				<b>price: </b>{data.price} <br/> 
+				<b>date: </b>{data.date} <br/> 
+			</div>
 		</div>
 	)
 }
@@ -23,10 +36,16 @@ function App() {
 	const [data, setData] = useState([])
 	const [showCat, setShowCat] = useState('')
 	const [search, setSearch] = useState('') 
+	const [showId, setShowId] = useState(0)
 	
 	const handleSearchChange = (event) => {
 		console.log(event.target.value)
 		setSearch(event.target.value)
+	}
+	
+	const handleItemChange = (id) => {
+		console.log(id)
+		setShowId(id)
 	}
 	
     useEffect(() => {
@@ -48,36 +67,67 @@ function App() {
 		data.category === showCat
 	)
 	
+	const itemToShow = data.filter(data => showId === data.id)
+	
 	// Build the rows based on category
 	const rows = () => rowsToShow.map(data =>
 		<Data
 		  key={data.id}
 		  data={data}
+		  onClick={() => handleItemChange(data.id)} 
 		/>
 	)
+	
+	const itemRow = () => showId === 0 ?
+		<div></div>
+		:
+		itemToShow.map(data=> 
+			<Item
+				key={data.id}
+				data = {data}
+			/>
+		)
 		
-	return (
-		<div className="App">
-			<Header />
-			<form>
-				<input class='mainsearch' value={search} onChange={handleSearchChange}	/>
-			</form>   
-			<p>
-			or browse by category
-			</p>
-			<div>
-			<Button class="button_style" text="all" onClick={() => setShowCat("")}/>  
-			<Button class="button_style" text="art" onClick={() => setShowCat("art")}/>  
-			<Button class="button_style" text="bikes" onClick={() => setShowCat("bikes")}/>  
-			<Button class="button_style" text="computers" onClick={() => setShowCat("computers")}/>
-			<Button class="button_style" text="electronics" onClick={() => setShowCat("electronics")}/>
-			<Button class="button_style" text="vehicles" onClick={() => setShowCat("vehicles")}/>
+	if(showId === 0) {
+		return (
+			<div className="App">
+				<Header />
+				<div>
+					search our database
+				</div>
+				<form>
+					<input className='mainsearch' value={search} onChange={handleSearchChange}	/>
+				</form>   
+				<p>
+				or browse by category
+				</p>
+				<div>
+				<Button className="button_style" text="all" onClick={() => setShowCat("")}/>  
+				<Button className="button_style" text="art" onClick={() => setShowCat("art")}/>  
+				<Button className="button_style" text="bikes" onClick={() => setShowCat("bikes")}/>  
+				<Button className="button_style" text="computers" onClick={() => setShowCat("computers")}/>
+				<Button className="button_style" text="electronics" onClick={() => setShowCat("electronics")}/>
+				<Button className="button_style" text="vehicles" onClick={() => setShowCat("vehicles")}/>
+				</div>
+				<div className='data-shell'>
+				{rows()}
+				</div>
 			</div>
-			<div class='data-shell'>
-			{rows()}
+		);
+	}
+	else {
+		return (
+			<div className="App">
+				<Header />
+				<div>
+					<Button className="button_style" text="back" onClick={() => setShowId(0)}/>
+				</div>
+				<div className='item-shell'>
+					{itemRow()}
+				</div>
 			</div>
-		</div>
-	);
+		)
+	}
 }
 
 export default App;
